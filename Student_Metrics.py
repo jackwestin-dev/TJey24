@@ -701,7 +701,7 @@ with tab2:
         st.write(' ')
 
         # Add Practice Exam Data Table
-        st.header('Practice Exam Data')
+        st.header('Exam Data')
         st.caption('Practice exam scores and survey completion status for retaker students.')
         
         # Add column definitions
