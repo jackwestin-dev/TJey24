@@ -147,12 +147,50 @@ df_tier_data_student_filtered = df_tier_data[df_tier_data['student_id'] == stude
 st.write(' ')
 st.write(' ')
 
+# Add CSS styling for larger tabs
+st.markdown("""
+<style>
+    /* Make tabs larger and more appealing */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 2rem;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        height: 3rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        transition: all 0.3s ease;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #e3f2fd;
+        border-bottom: 3px solid #2196f3;
+        color: #1976d2;
+        font-weight: 700;
+    }
+    
+    .stTabs [data-baseweb="tab"]:hover {
+        background-color: #f5f5f5;
+        color: #1976d2;
+        transform: translateY(-1px);
+    }
+    
+    .stTabs [data-baseweb="tab"]:not([aria-selected="true"]):hover {
+        background-color: #f8f9fa;
+        color: #1976d2;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Create tabs
 tab1, tab2 = st.tabs(["Individual Student Metrics", "Retaker Cohort"])
 
 with tab1:
     # Student Tier Assessment - moved to very top
-    st.header('Student Tier Assessment for June 2024 - April 2025')
+    st.header('Student Tier Assessment')
     st.caption('The tiers listed below represent student data gathered throughout their time in our MCAT program, from June 2024 to now.')
     st.write(' ')
 
@@ -203,7 +241,7 @@ with tab1:
     st.write(' ')
 
     # Summer Student Tier Assessment
-    st.header('Summer Student Tier Assessment for June-July 2025')
+    st.header('Summer Student Tier Assessment')
     st.caption('The tiers listed below represent student data gathered during the summer 2025 program.')
     st.write(' ')
 
@@ -693,11 +731,10 @@ with tab2:
         practice_exam_data = []
         for _, row in df_retakers_clean.iterrows():
             if pd.notna(row['student_id']):
-                # Handle numeric columns properly to avoid Arrow conversion errors
-                first_attempt = row['First Attempt'] if pd.notna(row['First Attempt']) and str(row['First Attempt']).replace('-', '').replace('.', '').isdigit() else None
-                second_attempt = row['Second Attempt'] if pd.notna(row['Second Attempt']) and str(row['Second Attempt']).replace('-', '').replace('.', '').isdigit() else None
-                difference = row['Difference '] if pd.notna(row['Difference ']) and str(row['Difference ']).replace('-', '').replace('.', '').isdigit() else None
-                
+                first_attempt = row['First Attempt'] if pd.notna(row['First Attempt']) else None
+                second_attempt = row['Second Attempt'] if pd.notna(row['Second Attempt']) else None
+                difference = row['Difference '] if pd.notna(row['Difference ']) else None
+
                 practice_exam_data.append({
                     'Student ID': int(row['student_id']),
                     'Reported Test Date': row['Reported Test Date'] if pd.notna(row['Reported Test Date']) else 'No Date Reported',
