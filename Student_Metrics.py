@@ -152,7 +152,7 @@ tab1, tab2 = st.tabs(["Individual Student Metrics", "Retaker Cohort"])
 
 with tab1:
     # Student Tier Assessment - moved to very top
-    st.header('Student Tier Assessment')
+    st.header('Student Tier Assessment for June 2024 - April 2025')
     st.caption('The tiers listed below represent student data gathered throughout their time in our MCAT program, from June 2024 to now.')
     st.write(' ')
 
@@ -203,7 +203,7 @@ with tab1:
     st.write(' ')
 
     # Summer Student Tier Assessment
-    st.header('Summer Student Tier Assessment')
+    st.header('Summer Student Tier Assessment for June-July 2025')
     st.caption('The tiers listed below represent student data gathered during the summer 2025 program.')
     st.write(' ')
 
